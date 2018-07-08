@@ -1,0 +1,31 @@
+SwitchAmpIntent:
+  action:
+    service: script.turn_on
+    data_template:
+      entity_id: script.amp_switch
+  speech:
+    type: plain
+    text: >
+      Ok
+
+SwitchTvIntent:
+  action:
+    service: script.turn_on
+    data_template:
+      entity_id: script.{{ ("tv_"+ State) }}
+  speech:
+    type: plain
+    text: >
+      Ok
+
+#
+#DeviceStateIntent:
+#  action:
+#    service: script.turn_on
+#    data_template:
+#      entity_id: script.{{ (Device["id"] + "_"+ State["id"]) }}
+#  speech:
+#    type: plain
+#    text: > 
+#      Ok état {{State}} pour l'appareil {{Device}}. Ok état {{State["value"]}}
+

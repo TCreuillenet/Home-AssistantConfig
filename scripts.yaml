@@ -1,0 +1,42 @@
+tv_on:
+  sequence:
+    - condition: state
+      entity_id: 'media_player.orange_tv'
+      state: 'off'
+    - service: switch.broadlink_send_packet_192_168_1_28
+      data:
+        packet: 
+          - "JgCiAIODEUERQhFBEUERIRAhEUERIRFBESEQQhEgESERIBEhECERQRFCESARQREhEUERIRBCEQABFYSDEEIRQRFCEEIRIBEhEUERIBFCESARQhAhESARIREgESERQRFBESERQREgEUIRIBFBEQABFoODEUERQhFBEUERIREgEUERIRFBESERQREgESERIBEhESARQRFCESARQhAhEUERIRFBEQANBQAAAAAAAA=="
+    - service: media_player.turn_on
+      data:
+        entity_id: media_player.orange_tv
+
+tv_off:
+  sequence:
+    - condition: state
+      entity_id: 'media_player.orange_tv'
+      state: 'playing'
+    - service: switch.broadlink_send_packet_192_168_1_28
+      data:
+        packet:
+          - "JgCiAIODEUERQhFBEUERIRAhEUERIRFBESEQQhEgESERIBEhECERQRFCESARQREhEUERIRBCEQABFYSDEEIRQRFCEEIRIBEhEUERIBFCESARQhAhESARIREgESERQRFBESERQREgEUIRIBFBEQABFoODEUERQhFBEUERIREgEUERIRFBESERQREgESERIBEhESARQRFCESARQhAhEUERIRFBEQANBQAAAAAAAA=="
+    - service: media_player.turn_off
+      data:
+        entity_id: media_player.orange_tv
+
+tv_pause:
+  sequence:
+    - condition: state
+      entity_id: 'media_player.orange_tv'
+      state: 'playing'
+    - service: media_player.media_play_pause
+      data:
+        entity_id: media_player.orange_tv
+
+amp_switch:
+  sequence:
+    - service: switch.broadlink_send_packet_192_168_1_28
+      data:
+        packet:
+          - "JgBIAAABGIwSNBERETQTEREREjMSERE0ERISMxMQETQRNRIREjMSEBMQExASMxI0EjMSERASEhIQNBE1ERISERASEjMTMxIzEgANBQ=="
+

@@ -1,0 +1,161 @@
+homeassistant:
+  # Name of the location where Home Assistant is running
+  name: Home
+  # Location required to calculate the time the sun rises and sets
+  latitude: 43.574284
+  longitude: 1.4563479
+  # Impacts weather/sunrise data (altitude above sea level in meters)
+  elevation: 144
+  # metric for Metric, imperial for Imperial
+  unit_system: metric
+  # Pick yours from here: http://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone: Europe/Paris
+  # Customization file
+  customize: !include customize.yaml
+
+# Show links to resources in log and frontend
+# introduction:
+
+# Enables the frontend
+frontend:
+
+# Enables configuration UI
+config:
+
+# Enables iOS
+ios:
+
+http:
+  # Secrets are defined in the file secrets.yaml
+  api_password: !secret http_password
+  # Uncomment this if you are using SSL/TLS, running in Docker container, etc.
+  # base_url: home-assistant-zazu.duckdns.org:8123
+  ssl_certificate: /etc/letsencrypt/live/home-assistant-zazu.duckdns.org/fullchain.pem
+  ssl_key: /etc/letsencrypt/live/home-assistant-zazu.duckdns.org/privkey.pem
+
+# Checks for available updates
+# Note: This component will send some information about your system to
+# the developers to assist with development of Home Assistant.
+# For more information, please see:
+# https://home-assistant.io/blog/2016/10/25/explaining-the-updater/
+updater:
+  # Optional, allows Home Assistant developers to focus on popular components.
+  # include_used_components: true
+
+# Discover some devices automatically
+discovery:
+
+# Enables support for tracking state changes over time
+history:
+
+# View all events in a logbook
+logbook:
+
+# Enables a map showing the location of tracked devices
+map:
+
+# Track the sun
+# sun:
+
+# Weather prediction
+sensor:
+#    - platform: darksky
+#      api_key: 53345a90db73d337ccdc5be7001c76a2
+#      monitored_conditions:
+#        - summary
+#        - temperature
+#    - platform: airvisual
+#      api_key: 7HT2rLdGqxJbDjzKS
+#      monitored_conditions:
+#        - us
+#      radius: 1000
+#      show_on_map: true  
+    - platform: netatmo
+      station: Rangueil
+      modules:
+        Terrasse:
+          - temperature
+        Salon:
+          - temperature
+          - co2
+          - humidity
+    - platform: miflora
+      mac: 'C4:7C:8D:66:5E:C8'
+      monitored_conditions:
+        - moisture
+        - light
+        - conductivity
+
+# Text to speech
+#tts:
+#  - platform: google
+
+# Cloud
+#cloud:
+
+group: !include groups.yaml
+automation: !include automations.yaml
+script: !include scripts.yaml
+#secrets: !include secrets.yaml
+alexa:
+  smart_home:
+    filter:
+      include_domains:
+        - scripts
+
+intent_script: !include intent_script.yaml
+
+
+# Netatmo API Integration
+netatmo:
+  api_key : !secret netatmo_api_key   
+  secret_key: !secret netatmo_secret_key
+  username: !secret netatmo_username
+  password: !secret netatmo_password
+
+# TP-Link Switch
+switch:
+#  - platform: tplink
+#    name: Chambre 
+#    host: !secret switch_host_chambre
+#    enable_leds: False
+#  - platform: tplink
+#    name: Salon
+#    host: !secret switch_host_salon
+#    enable_leds: False
+  - platform: broadlink
+    host: 192.168.1.28
+    mac: '34:EA:34:58:B7:06'
+
+#light:
+#  - platform: tplink
+#    host: !secret light_host_chambre
+          
+# Spotify integration
+media_player:
+  - platform: liveboxplaytv
+    host: 192.168.1.10
+    name: Orange TV
+  - platform: spotify
+    client_id: !secret spotify_id
+    client_secret: !secret spotify_secret
+  - platform: mpd
+    name: 'Music Pi'
+    host: 127.0.0.1
+# TTS Bluetooth speaker  
+#  - platform: tts_bluetooth_speaker
+#    address: 5C:F3:70:23:04:04
+#    volume: 0.45
+
+# Bluetooth device tracker
+#device_tracker:
+#  - platform: bluetooth_tracker
+
+#camera:
+#  - platform: mjpeg
+#    name: Camera salon
+#    mjpeg_url: !secret picam_url
+#    username: !secret picam_username
+#    password: !secret picam_password
+
+

@@ -1,0 +1,20 @@
+sensor.netatmo_salon_pressure:
+  hidden: true
+sensor.netatmo_terrasse_radio:
+  hidden: true
+sensor.netatmo_salon_wifi:
+  hidden: true
+sensor.netatmo_terrasse_battery:
+  hidden: true
+sensor.iphone_de_charlotte_battery_level:
+  hidden: true
+sensor.iphone_de_charlotte_battery_state:
+  hidden: true
+media_player.spotify: {}
+device_tracker.chipolothomas:
+  hidden: true
+device_tracker.mibandthomas:
+  hidden: true
+group.thomas:
+  hidden: true
+  icon: mdi:home-account
