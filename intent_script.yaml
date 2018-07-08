@@ -18,14 +18,3 @@ SwitchTvIntent:
     text: >
       Ok
 
-#
-#DeviceStateIntent:
-#  action:
-#    service: script.turn_on
-#    data_template:
-#      entity_id: script.{{ (Device["id"] + "_"+ State["id"]) }}
-#  speech:
-#    type: plain
-#    text: > 
-#      Ok état {{State}} pour l'appareil {{Device}}. Ok état {{State["value"]}}
-

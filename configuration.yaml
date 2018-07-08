@@ -28,8 +28,6 @@ ios:
 http:
   # Secrets are defined in the file secrets.yaml
   api_password: !secret http_password
-  # Uncomment this if you are using SSL/TLS, running in Docker container, etc.
-  # base_url: home-assistant-zazu.duckdns.org:8123
   ssl_certificate: /etc/letsencrypt/live/home-assistant-zazu.duckdns.org/fullchain.pem
   ssl_key: /etc/letsencrypt/live/home-assistant-zazu.duckdns.org/privkey.pem
 
@@ -52,24 +50,13 @@ history:
 logbook:
 
 # Enables a map showing the location of tracked devices
-map:
+#map:
 
 # Track the sun
 # sun:
 
 # Weather prediction
 sensor:
-#    - platform: darksky
-#      api_key: 53345a90db73d337ccdc5be7001c76a2
-#      monitored_conditions:
-#        - summary
-#        - temperature
-#    - platform: airvisual
-#      api_key: 7HT2rLdGqxJbDjzKS
-#      monitored_conditions:
-#        - us
-#      radius: 1000
-#      show_on_map: true  
     - platform: netatmo
       station: Rangueil
       modules:
@@ -88,10 +75,6 @@ sensor:
 
 # Text to speech
 #tts:
-#  - platform: google
-
-# Cloud
-#cloud:
 
 group: !include groups.yaml
 automation: !include automations.yaml
@@ -139,23 +122,6 @@ media_player:
   - platform: spotify
     client_id: !secret spotify_id
     client_secret: !secret spotify_secret
-  - platform: mpd
-    name: 'Music Pi'
-    host: 127.0.0.1
-# TTS Bluetooth speaker  
-#  - platform: tts_bluetooth_speaker
-#    address: 5C:F3:70:23:04:04
-#    volume: 0.45
 
-# Bluetooth device tracker
-#device_tracker:
-#  - platform: bluetooth_tracker
-
-#camera:
-#  - platform: mjpeg
-#    name: Camera salon
-#    mjpeg_url: !secret picam_url
-#    username: !secret picam_username
-#    password: !secret picam_password
 
 
